@@ -1,46 +1,49 @@
 ---
+title: Poll Average in Gun Control
 output:
-  pdf_document: default
   html_document: default
 ---
 ### Data 607 Assignment 1
 ### Eddie Xu
-### January 29, 2023
+
 ---
 [link](https://projects.fivethirtyeight.com/guns-parkland-polling-quiz/)
 
-###Introduction
+### Introduction
 Gun control is a polarizing topic in America, especially in 2018. The article cover the topic and presents the poll of Gun Control in America. Because of that, I want to find out about the average of adults and registered voter.
 
-###Conclusion
+### Conclusion
 Based on my analysis, it appears that registered voters are more vocal about gun control.
 
----
-###Load Libraries
+```{r}
+### Load Libraries
 library(ggplot2)
 library(tidyverse)
 
----
-###read the CSV file
+```
+### Read the CSV file
+```{r}
 readfile <- data.frame(read.csv("C:/Users/eddie/Data Science Project/607_assignment_1/poll-quiz-guns/guns-polls.csv"))
 dim(readfile)
   
 head(readfile)
----
-###remove a column
+```
+### remove a column
+```{r}
 poll_df <- readfile %>% select(-c(URL))
 head(poll_df)
-  
----
-###What is the poll support that are greater than 50?
+```
+### What is the poll support that are greater than 50?
+```{r}
+library(knitr)
 Support_50 <- subset(poll_df, Support > 50)
 Support_50
 
-summary(Support_50)
-
----
-###Bar plot
-###what is the poll average in gun control by Population?
+kable(Support_50, caption = "Poll Greater Than 50")
+```
+### Bar plot
+### What is the poll average in gun control by Population?
+```{r}
 poll_average_df <- subset(poll_df, select = -c(Start, End, Pollster))
 head(poll_average_df)
 
@@ -54,3 +57,4 @@ poll_average_df <- poll_average_df %>%
 ggplot(poll_average_df, aes(Population, pop_avg, fill = Population)) + 
          geom_bar(stat = "identity", position = "dodge") +
          labs(title = "Poll Average in Population")
+```

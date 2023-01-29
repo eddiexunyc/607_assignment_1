@@ -7,6 +7,7 @@
 ###Load Libraries
 library(ggplot2)
 library(tidyverse)
+library(knitr)
 
 ---
 ###read the CSV file
@@ -24,7 +25,7 @@ head(poll_df)
 Support_50 <- subset(poll_df, Support > 50)
 Support_50
 
-summary(Support_50)
+kable(Support_50, caption = "Poll Greater Than 50")
 
 ---
 ###Bar plot
