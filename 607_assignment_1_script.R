@@ -11,9 +11,9 @@ library(knitr)
 
 ---
 ###read the CSV file
-readfile <- data.frame(read.csv("C:/Users/eddie/Data Science Project/607_assignment_1/poll-quiz-guns/guns-polls.csv"))
+readfile <- data.frame(read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/poll-quiz-guns/guns-polls.csv", header = TRUE))
 dim(readfile)
-  
+
 head(readfile)
 ---
 ###remove a column
